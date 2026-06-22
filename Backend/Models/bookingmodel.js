@@ -1,0 +1,33 @@
+const mongoose=require("mongoose")
+
+const bookingShcema = new mongoose.Schema({
+    userId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required:true,
+    },
+    eventId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Event",
+        required:true,        
+    },
+    status:{
+        type:String,
+        enum:["pending","confimed","cancelled"],
+        default:"pending"
+    },
+    paymentStatus:{
+        type:String,
+        enum:["non_paid","paid"],
+        default:"non_paid",
+    },
+    amount:{
+        type:Number,
+        required:true
+    }
+},{timestamps:true})
+
+const bookingModel=mongoose.model("Booking",bookingShcema)
+
+module.exports=bookingModel
+
