@@ -18,10 +18,9 @@ const Register = () => {
         e.preventDefault();
         setLoading(true);
         setError('');
-        console.log("sign up ", email, password)
+
         try {
             if (!showOTP) {
-                console.log("sign up ", email, password)
                 await register(name, email, password);
                 setShowOTP(true);
                 setError('');

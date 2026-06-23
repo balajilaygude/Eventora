@@ -9,7 +9,7 @@ async function registerUser(req, res) {
   console.log(req.body)
   const userExists = await userModel.findOne({ email });
   if (userExists) {
-    res.status(400).json({
+    return res.status(400).json({
       error: "User Aready Exists ..",
     });
   }
@@ -18,7 +18,7 @@ async function registerUser(req, res) {
   const hashPassword = await bcrypt.hash(password, salt);
   console.log(hashPassword)
   try {
-    const user = userModel.create({
+    const user = await userModel.create({
       name,
       email,
       password: hashPassword,
@@ -42,20 +42,18 @@ async function registerUser(req, res) {
 
 async function loginUser(req, res) {
   const { email, password } = req.body;
-
+  console.log(email, password)
   const userCheck = await userModel.findOne({ email });
   if (!userCheck) {
-    return;
-    res.status(400).json({
+    return res.status(400).json({
       message: "User Not found Plase sign up",
-    });
+    })
   }
   const matchPassword = await bcrypt.compare(password, userCheck.password);
   if (!matchPassword) {
-    return;
-    res.status(400).json({
+    return res.status(400).json({
       message: "Invalid Credentials",
-    });
+    })
   }
 
   if (!userCheck.isVerify && userCheck.role === "user") {
@@ -64,8 +62,9 @@ async function loginUser(req, res) {
     await otpModel.create({ email, otp, action: "account_verification" });
     await sendOtpEmail(email, otp, "account_verification");
     return res.status(400).json({
+      needsVerification: true,
       error: "Account not verified a new otp sent to your email",
-    });
+    })
   }
 
   res.status(200).json({
@@ -75,7 +74,7 @@ async function loginUser(req, res) {
     email: userCheck.email,
     role: userCheck.role,
     token: generateToken(userCheck._id, userCheck.role),
-  });
+  })
 }
 
 async function verifyOPT(req, res) {

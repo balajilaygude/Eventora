@@ -16,12 +16,9 @@ const Home = () => {
     }, [search]);
 
     const fetchEvents = async () => {
-        console.log(api.defaults.baseURL);
         try {
             const { data } = await api.get(`/events?search=${search}`);
             setEvents(data);
-            console.log(data)
-            console.log(events)
         } catch (error) {
             console.error('Error fetching events:', error);
         } finally {
