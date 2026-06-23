@@ -5,7 +5,7 @@ const authRoute=express.Router()
 
 authRoute.post("/register",registerUser)
 authRoute.post("/login",loginUser)
-authRoute.post("/varifyotp",verifyOPT)
+authRoute.post("/verifyotp",verifyOPT)
 
 
 module.exports=authRoute
