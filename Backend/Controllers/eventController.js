@@ -2,13 +2,15 @@ const eventModel = require("../Models/eventmodel");
 
 async function getAllEvent(req, res) {
   const filters = {};
+  console.log(req.query.search);
   try {
-    if (req.query.categary) {
-      filters.categary = req.query.categary;
+    if (req.query.search) {
+      filters.title = {
+        $regex: req.query.search,
+        $options: "i",
+      };
     }
-    if (req.query.ticketPrice) {
-      filters.ticketPrice = req.query.ticketPrice;
-    }
+    console.log(filters)
     const eventSet = await eventModel.find(filters);
     return res.json(eventSet);
   } catch (error) {
