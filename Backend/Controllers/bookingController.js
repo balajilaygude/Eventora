@@ -68,7 +68,7 @@ async function confirmEvent(req,res) {
     if(event.totalSeats<=0){
         return res.status(400).json({error:"No seats available"})
     }
-    boooking.status="confirmed";
+    boooking.status="confimed";
     if(paymentStatus){
         booking.paymentStatus=paymentStatus;
     }
@@ -80,21 +80,25 @@ async function confirmEvent(req,res) {
 }
 
 async function cancelEvent(req,res) {
-    const booking =await bookingModel.findById(req.params.id).populate("eventid")
+    const id=req.params
+    console.log(id)
+    const booking =await bookingModel.findById(req.params.id).populate("eventId")
     if(!booking){
         return res.status(400).json({error:"Booking not found"})
     }
     if(booking.userId.toString()!== req.user._id.toString()){
         return res.status(400).json({error:"Unauthorized"})
     }
-    booking.status="cancelled";
-    await booking.save()
+
     if(booking.status=="confimed"){
         const event=await eventModel.findById(booking.eventId._id)
         event.totalSeats+=1;
         await event.save()
     }
-    await booking.remove();
+console.log(booking)
+        booking.status="cancelled";
+    await booking.save()
+    console.log(booking)
     res.json({message:"Booking cancelled"})
 }
 
