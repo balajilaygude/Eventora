@@ -21,7 +21,7 @@ const UserDashboard = () => {
     const fetchBookings = async () => {
         try {
             const { data } = await api.get('/bookings/my');
-            setBookings(data);
+            setBookings(data)
         } catch (error) {
             console.error('Error fetching bookings', error);
         } finally {
@@ -81,7 +81,7 @@ const UserDashboard = () => {
                                     <>
                                         <div className="flex justify-between items-start mb-4">
                                             <h3 className="text-lg font-bold text-gray-900 leading-tight">{booking.eventId.title}</h3>
-                                            <div className="flex flex-col gap-1 items-end">
+                                            { booking.amount!=0 &&<div className="flex flex-col gap-1 items-end">
                                                 <span className={`px-2 py-1 text-[10px] font-black rounded uppercase tracking-wider ${booking.status === 'confirmed' ? 'bg-green-100 text-green-700' :
                                                     booking.status === 'cancelled' ? 'bg-red-100 text-red-700' :
                                                         'bg-yellow-100 text-yellow-700'
@@ -94,7 +94,7 @@ const UserDashboard = () => {
                                                         {booking.paymentStatus.replace('_', ' ')}
                                                     </span>
                                                 )}
-                                            </div>
+                                            </div>}
                                         </div>
                                         <div className="text-sm text-gray-500 mb-4 space-y-1">
                                             <p><strong className="text-gray-700">Date:</strong> {new Date(booking.eventId.date).toLocaleDateString()}</p>
