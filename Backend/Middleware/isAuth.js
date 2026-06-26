@@ -3,7 +3,6 @@ const { verifyToken } = require("./jwtFuntions");
 
 async function protect(req,res,next) {
     let token =req.headers.authorization.split(" ")[1];
-    console.log("token ",token)
     if(token){
         try {
             const decoded=verifyToken(token)

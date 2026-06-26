@@ -48,7 +48,6 @@ async function bookEvent(req,res) {
 }
 
 async function getMyBookings(req,res) {
-
     if (req.user.role === "admin") {
         // Admin gets all bookings
         bookings = await bookingModel.find().populate("eventId userId");
@@ -62,14 +61,17 @@ async function getMyBookings(req,res) {
 }
 
 async function confirmEvent(req,res) {
+    console.log(req.params.id ," Id \n ",req.body.paymentStatus)
     const paymentStatus=req.body.paymentStatus;
     if(!["paid","non_paid"].includes(paymentStatus)){
         return res.status(400).json({error:"Invalid Payment status"})
     }
+    console.log("here")
     const booking= await bookingModel.findById(req.params.id).populate("eventId");
     if(!booking){
         return res.status(400).json({error:"Booking not found"})
     }
+    console.log(booking)
     if(booking.status==="confimed"){
         return res.status(400).json({error:"Booking is already confiremed"})
     }
@@ -77,26 +79,27 @@ async function confirmEvent(req,res) {
     if(event.totalSeats<=0){
         return res.status(400).json({error:"No seats available"})
     }
-    boooking.status="confimed";
+    console.log(event)
+    booking.status="confimed";
     if(paymentStatus){
         booking.paymentStatus=paymentStatus;
     }
     await booking.save()
     event.totalSeats-=1;
     await event.save()
-    await sendBookingEmail(req.body.email,event.title,booking._id)
+    await sendBookingEmail(req.user.email,event.title,booking._id)
     res.json({message:"Booking confirmend"})
 }
 
 async function cancelEvent(req,res) {
-    const id=req.params
-    console.log(id)
-    const booking =await bookingModel.findById(req.params.id).populate("eventId")
+    const {id}=req.params
+    const booking =await bookingModel.findById(id).populate("eventId")
     if(!booking){
         return res.status(400).json({error:"Booking not found"})
     }
-    if(booking.userId.toString()!== req.user._id.toString()){
-        return res.status(400).json({error:"Unauthorized"})
+    if(booking.userId.toString()!== req.user._id.toString() && req.user.role !="admin"){
+        console.log("bye")
+        return res.status(400).json({message:"Unauthorized"})
     }
 
     if(booking.status=="confimed"){
@@ -104,10 +107,8 @@ async function cancelEvent(req,res) {
         event.totalSeats+=1;
         await event.save()
     }
-console.log(booking)
         booking.status="cancelled";
     await booking.save()
-    console.log(booking)
     res.json({message:"Booking cancelled"})
 }
 
