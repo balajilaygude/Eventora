@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import api from '../utils/axios';
 import { FaCalendarAlt, FaMapMarkerAlt, FaSearch, FaRegClock, FaTicketAlt, FaShieldAlt } from 'react-icons/fa';
 
+
 const Home = () => {
     const [events, setEvents] = useState([]);
     const [search, setSearch] = useState('');
