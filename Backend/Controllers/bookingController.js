@@ -12,29 +12,34 @@ async function sendBookingOTP(req,res) {
     await otpModel.findOneAndDelete({email:req.user.email,action:"event_booking"});
     await otpModel.create({email:req.user.email,otp: otp,action:"event_booking"})
     await sendOtpEmail(req.user.email,otp,"event_booking")
-    res.json({message:"Otp sent To email"})
+    return res.json({message:"Otp sent To email"})
 }
 
 async function bookEvent(req,res) {
     const {eventId,otp}=req.body;
+    console.log(req.body)
     const otpRecord=await otpModel.findOne({email:req.user.email,otp,action:"event_booking"});
     if(!otpRecord){
         return res.status(404).json({message:"Invalid or Expired otp "})
     }
-
+    console.log(otpRecord)
     const event=await eventModel.findById(eventId);
     if(!event){
         return res.status(404).json({error:"event not found"})
     }
-
+    console.log(event)
     if(event.totalSeats <=0){
-        return res.status(404).json({error:"No seat available "})
+        return res.status(409).json({error:"No seat available "})
     }
-
+    console.log("next to event")
+    console.log("userid",req.user._id,"event id",eventId)
     const existingBooking=await bookingModel.findOne({userId:req.user._id,eventId:eventId});
+    console.log(existingBooking)
     if(existingBooking){
-        return res.status(404).json({error:"You have ready booked this Event"})
+        console.log("inside exitbook")
+        return res.status(409).json({error:"You have ready booked this Event"})
     }
+    console.log("exiting",existingBooking)
     const booking=await bookingModel.create({
         userId:req.user._id,
         eventId,
@@ -42,9 +47,9 @@ async function bookEvent(req,res) {
         paymentStatus:"non_paid",
         amount:event.ticketPrice
     });
-
+    console.log("booking",booking)
     await otpModel.deleteMany({email:req.user.email,action:"event_booking"});
-    res.status.status(201).json({message:"booking created please check you email "})
+    res.status(201).json({message:"booking created please check you email "})
 }
 
 async function getMyBookings(req,res) {
