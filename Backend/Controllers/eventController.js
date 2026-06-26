@@ -32,6 +32,7 @@ async function getEventById(req, res) {
 }
 
 async function createEvent(req, res) {
+  console.log("hi create",req.body)
   const {
     title,
     description,
@@ -54,9 +55,12 @@ async function createEvent(req, res) {
       availableSeats,
       ticketPrice,
       imageURL,
+      createdBy:req.user._id
     });
-    res.status(400).json(eventNew);
+    console.log(eventNew)
+    res.status(200).json({message:"Done Event Created"});
   } catch (error) {
+    console.log(error)
     res.status(400).json({ error: error.messege });
   }
 }

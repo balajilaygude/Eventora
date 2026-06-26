@@ -7,7 +7,7 @@ const eventRoute=express.Router()
 eventRoute.get("/",getAllEvent)
 eventRoute.get("/:id",getEventById)
 eventRoute.post("/",protect,admin,createEvent)
-eventRoute.patch("/:id",protect,admin,updateEvent)
+eventRoute.patch("/:id",protect,admin,updateEvent)// not use 
 eventRoute.delete("/:id",protect,admin,deleteEvent)
 
 

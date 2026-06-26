@@ -31,7 +31,8 @@ const AdminDashboard = () => {
             ]);
             setEvents(eventsRes.data);
             setBookings(bookingsRes.data);
-            console.log(bookingsRes )
+            console.log(bookingsRes.data )
+            console.log("Event res \n",eventsRes.data )
         } catch (error) {
             console.error('Error fetching admin data', error);
         } finally {
@@ -41,6 +42,7 @@ const AdminDashboard = () => {
 
     const handleCreateEvent = async (e) => {
         e.preventDefault();
+        console.log(formData)
         try {
             await api.post('/events', formData);
             setShowEventForm(false);

@@ -48,8 +48,17 @@ async function bookEvent(req,res) {
 }
 
 async function getMyBookings(req,res) {
-    const bookings=await bookingModel.find({userId:req.user._id}).populate("eventId")
-    res.json(bookings)
+
+    if (req.user.role === "admin") {
+        // Admin gets all bookings
+        bookings = await bookingModel.find().populate("eventId userId");
+    } else {
+        // User gets only their bookings
+        bookings = await bookingModel
+            .find({ userId: req.user._id })
+            .populate("eventId");
+    }
+    return res.json(bookings)
 }
 
 async function confirmEvent(req,res) {

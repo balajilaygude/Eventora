@@ -26,7 +26,6 @@ const eventSchema=new mongoose.Schema({
     },
     availableSeats:{
         type:Number,
-        required:true
     },
     ticketPrice:{
         type:Number,
