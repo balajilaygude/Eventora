@@ -87,7 +87,3 @@ Implemented JWT authentication, bcrypt password hashing, protected routes, and m
 * Role-Based Access Control (RBAC)
 * Protected API Routes
 * Environment Variable Management using dotenv
-
-## Impact
-
-This project demonstrates full-stack MERN development, secure authentication, role-based authorization, email verification, REST API development, CRUD operations, and scalable application architecture. It showcases the ability to build a production-ready event management platform with separate admin and user workflows.
