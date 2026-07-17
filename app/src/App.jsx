@@ -1,18 +1,9 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import EventDetail from './pages/EventDetail';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import UserDashboard from './pages/UserDashboard';
-import AdminDashboard from './pages/AdminDashboard';
-import PaymentSuccess from './pages/PaymentSuccess';
-import PaymentFailed from './pages/PaymentFailed';
+import React from 'react'
+
 
 function App() {
     return (
-        <Router>
+        <Route>
             <div className="min-h-screen bg-gray-50 flex flex-col">
                 <Navbar />
                 <main className="grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -29,7 +20,7 @@ function App() {
                     </Routes>
                 </main>
             </div>
-        </Router>
+        </Route>
     );
 }
 
