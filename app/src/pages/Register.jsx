@@ -18,10 +18,13 @@ const Register = () => {
         e.preventDefault();
         setLoading(true);
         setError('');
-
+        console.log("Block1")
         try {
+            console.log("Block2")
             if (!showOTP) {
+                console.log("Block3")
                 await register(name, email, password);
+                console.log("Block7")
                 setShowOTP(true);
                 setError('');
             } else {

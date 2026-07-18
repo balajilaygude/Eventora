@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const { data } = await api.post('/auth/login', { email, password });
             setUser(data);
+            console.log(data)
             localStorage.setItem('userInfo', JSON.stringify(data));
             localStorage.setItem('token', data.token);
             return data;
@@ -29,10 +30,14 @@ export const AuthProvider = ({ children }) => {
     };
 
     const register = async (name, email, password) => {
-
+        console.log("Block4")
         try {
+            console.log("Block5")
             const { data } = await api.post('/auth/register', { name, email, password });
+            console.log(data)
+            console.log("Block6")
             return data; // Returns { message, email }
+
         } catch (error) {
             throw error.response?.data?.error || 'Registration failed';
         }
