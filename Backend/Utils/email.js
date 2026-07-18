@@ -1,3 +1,9 @@
+
+
+
+// =====================================================
+// =====================================================
+// NODEMAILER IT WORK ON LOCALHOST NOT ON RENDER 
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -13,12 +19,7 @@ const transporter = nodemailer.createTransport({
 });
 
 async function sendOtpEmail(email, otp, type) {
-  try {
-  await transporter.verify();
-  console.log("SMTP connection successful");
-} catch (err) {
-  console.error(err);
-}
+
   console.log("Email start")
   try {
     console.log("Email in")
