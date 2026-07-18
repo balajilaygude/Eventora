@@ -3,7 +3,6 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
   host: "smtp.gmail.com",
     port: 587,
   secure: false,
@@ -14,6 +13,12 @@ const transporter = nodemailer.createTransport({
 });
 
 async function sendOtpEmail(email, otp, type) {
+  try {
+  await transporter.verify();
+  console.log("SMTP connection successful");
+} catch (err) {
+  console.error(err);
+}
   console.log("Email start")
   try {
     console.log("Email in")
