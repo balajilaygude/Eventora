@@ -96,7 +96,7 @@ const Home = () => {
               <div className="h-48 bg-gray-200 overflow-hidden relative">
                 {event.image ? (
                   <img
-                    src={event.image}
+                    src={event.imageURL}
                     alt={event.title}
                     className="w-full h-full object-cover"
                   />
