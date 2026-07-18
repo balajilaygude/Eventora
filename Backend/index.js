@@ -8,7 +8,9 @@ const eventRoute = require("./Routes/event")
 const bookingRoute = require("./Routes/booking")
 
 const app=express()
-app.use(cors())
+app.use(cors({
+  origin: "https://eventora-app-f9qc.onrender.com"
+}))
 app.use(express.json())
 const PORT=process.env.PORT || 3000
 
