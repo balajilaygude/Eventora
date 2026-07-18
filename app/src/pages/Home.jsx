@@ -26,6 +26,7 @@ const Home = () => {
     try {
       const { data } = await api.get(`/events?search=${search}`);
       setEvents(data);
+      console.log(data)
     } catch (error) {
       console.error("Error fetching events:", error);
     } finally {
@@ -94,7 +95,7 @@ const Home = () => {
               className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition flex flex-col"
             >
               <div className="h-48 bg-gray-200 overflow-hidden relative">
-                {event.image ? (
+                {event.imageURL ? (
                   <img
                     src={event.imageURL}
                     alt={event.title}
