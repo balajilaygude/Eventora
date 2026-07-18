@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Children } from "react";
 import { Link } from "react-router-dom";
-import api from "../utils/axios";
+import api from "../utils/Axios";
 import {
   FaCalendarAlt,
   FaMapMarkerAlt,

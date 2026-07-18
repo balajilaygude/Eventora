@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import EventDetail from './pages/EventDetail';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import UserDashboard from './pages/Userdashboard';
+import UserDashboard from './pages/UserDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 
 
