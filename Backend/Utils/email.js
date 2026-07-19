@@ -10,14 +10,29 @@ const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 dotenv.config();
 
+//old
+// const transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com",
+//     port: 587,
+//   secure: false,
+//   auth: {
+//     user: process.env.EMAIL_USER,
+//     pass: process.env.EMAIL_PASS,
+//   },
+// });
+
+
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-    port: 587,
+  port: 587,
   secure: false,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 10000,
 });
 
 async function sendOtpEmail(email, otp, type) {
@@ -50,8 +65,20 @@ async function sendOtpEmail(email, otp, type) {
       </div>
       `,
     };
+try {
+    console.log("Before verify");
+
+    await transporter.verify();
+
+    console.log("SMTP Connected");
+
     await transporter.sendMail(mailOptions);
-    console.log("Email in")
+
+    console.log("Mail sent");
+}
+catch(err){
+    console.log(err);
+}
     console.log(`Email.js Otp for ${email} for ${otp}`);
   } catch (error) {
     console.error(`Error sending otp email ${email} for ${otp}`, error);
@@ -75,7 +102,20 @@ async function sendBookingEmail(userEmail, userName, eventTitle) {
           </p>   
           `,
     };
+try {
+    console.log("Before verify");
+
+    await transporter.verify();
+
+    console.log("SMTP Connected");
+
     await transporter.sendMail(mailOptions);
+
+    console.log("Mail sent");
+}
+catch(err){
+    console.log(err);
+}
     console.log(`Email sent Succesfully ${userEmail}`);
   } catch (error) {
     console.error("Error Sending email : ", error)
