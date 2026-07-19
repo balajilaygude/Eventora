@@ -1,21 +1,21 @@
-const brevo = require("@getbrevo/brevo");
+const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 
 dotenv.config();
 
-const apiInstance = new brevo.TransactionalEmailsApi();
-
-apiInstance.setApiKey(
-  brevo.TransactionalEmailsApiApiKeys.apiKey,
-  process.env.BREVO_API_KEY
-);
+const transporter = nodemailer.createTransport({
+  host: "smtp-relay.brevo.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
 
 // ================= OTP Email =================
 
 async function sendOtpEmail(email, otp, type) {
-
-  console.log(process.env.BREVO_API_KEY)
-  console.log(process.env.EMAIL_USER)
   const title =
     type === "account_verification"
       ? "Verify your Eventora Account"
@@ -26,34 +26,24 @@ async function sendOtpEmail(email, otp, type) {
       ? "Please use the following OTP to verify your Eventora account."
       : "Please use the following OTP to confirm your booking.";
 
-  const sendSmtpEmail = new brevo.SendSmtpEmail();
-
-  sendSmtpEmail.subject = title;
-
-  sendSmtpEmail.htmlContent = `
-    <div style="width:300px;padding:20px;border:1px solid #ddd;border-radius:8px">
-      <h2>${title}</h2>
-      <p>${msg}</p>
-      <h1>${otp}</h1>
-    </div>
-  `;
-
-  sendSmtpEmail.sender = {
-    name: "Eventora",
-    email: process.env.EMAIL_USER,
+  const mailOptions = {
+    from: `"Eventora" <${process.env.EMAIL_USER}>`,
+    to: email,
+    subject: title,
+    html: `
+      <div style="width:300px;padding:20px;border:1px solid #ddd;border-radius:8px;font-family:Arial,sans-serif;">
+        <h2>${title}</h2>
+        <p>${msg}</p>
+        <h1 style="letter-spacing:5px;">${otp}</h1>
+      </div>
+    `,
   };
 
-  sendSmtpEmail.to = [
-    {
-      email: email,
-    },
-  ];
-
   try {
-    await apiInstance.sendTransacEmail(sendSmtpEmail);
-    console.log("OTP Email Sent");
+    await transporter.sendMail(mailOptions);
+    console.log(`OTP Email sent to ${email}`);
   } catch (err) {
-    console.error(err);
+    console.error("OTP Email Error:", err);
     throw err;
   }
 }
@@ -61,34 +51,24 @@ async function sendOtpEmail(email, otp, type) {
 // ================= Booking Email =================
 
 async function sendBookingEmail(userEmail, userName, eventTitle) {
-  const sendSmtpEmail = new brevo.SendSmtpEmail();
+  const mailOptions = {
+    from: `"Eventora" <${process.env.EMAIL_USER}>`,
+    to: userEmail,
+    subject: `Booking Confirmed : ${eventTitle}`,
+    html: `
+      <h2>Hi ${userName}</h2>
 
-  sendSmtpEmail.subject = `Booking Confirmed : ${eventTitle}`;
+      <p>Your booking for <b>${eventTitle}</b> has been confirmed.</p>
 
-  sendSmtpEmail.htmlContent = `
-    <h2>Hi ${userName}</h2>
-
-    <p>Your booking for <b>${eventTitle}</b> is confirmed.</p>
-
-    <p>Thanks for choosing Eventora ❤️</p>
-  `;
-
-  sendSmtpEmail.sender = {
-    name: "Eventora",
-    email: process.env.EMAIL_USER,
+      <p>Thanks for choosing <b>Eventora</b> ❤️</p>
+    `,
   };
 
-  sendSmtpEmail.to = [
-    {
-      email: userEmail,
-    },
-  ];
-
   try {
-    await apiInstance.sendTransacEmail(sendSmtpEmail);
-    console.log("Booking Email Sent");
+    await transporter.sendMail(mailOptions);
+    console.log(`Booking Email sent to ${userEmail}`);
   } catch (err) {
-    console.error(err);
+    console.error("Booking Email Error:", err);
     throw err;
   }
 }
@@ -97,7 +77,6 @@ module.exports = {
   sendOtpEmail,
   sendBookingEmail,
 };
-
 
 // =====================================================
 // =====================================================
