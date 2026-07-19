@@ -3,7 +3,9 @@
 
 // =====================================================
 // =====================================================
-// NODEMAILER IT WORK ON LOCALHOST NOT ON RENDER 
+// NODEMAILER IT WORK ON LOCALHOST NOT ON RENDER
+
+
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -20,7 +22,7 @@ const transporter = nodemailer.createTransport({
 
 async function sendOtpEmail(email, otp, type) {
 
-  console.log("Email start")
+  console.log(email ," ",otp," ",type)
   try {
     console.log("Email in")
     const title =
