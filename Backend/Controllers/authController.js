@@ -25,8 +25,6 @@ async function registerUser(req, res) {
       role: "user",
       isVerify: false,
     });
-    console.log(process.version);
-console.log(require("nodemailer/package.json").version);
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     console.log(`OPT for ${email} : ${otp}`);
