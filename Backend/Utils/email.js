@@ -9,10 +9,9 @@ const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const dns = require("dns");
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
+  host: "74.125.142.109",
   port: 587,
   secure: false,
 
@@ -25,9 +24,6 @@ const transporter = nodemailer.createTransport({
   greetingTimeout: 10000,
   socketTimeout: 10000,
 
-  lookup(hostname, options, callback) {
-    return dns.lookup(hostname, { family: 4 }, callback);
-  },
 });
 async function verifyTransporter() {
   try {
@@ -72,7 +68,7 @@ async function sendOtpEmail(email, otp, type) {
       </div>
       `,
     };
-    verifyTransporter();
+    await verifyTransporter();
     await transporter.sendMail(mailOptions);
     console.log(`Email.js Otp for ${email} for ${otp}`);
   } catch (error) {
@@ -98,7 +94,7 @@ async function sendBookingEmail(userEmail, userName, eventTitle) {
           `,
     };
 
-    verifyTransporter();
+    await verifyTransporter();
     await transporter.sendMail(mailOptions);
     console.log(`Email sent Succesfully ${userEmail}`);
   } catch (error) {
