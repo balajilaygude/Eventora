@@ -9,24 +9,26 @@ const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const dns = require("dns");
+
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
   secure: false,
-
-    family: 4,   // Force IPv4
 
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
 
-  // Debug timeouts
-  connectionTimeout: 10000, // 10 seconds to establish connection
-  greetingTimeout: 10000,   // 10 seconds to receive SMTP greeting
-  socketTimeout: 10000,     // 10 seconds of inactivity
-});
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 10000,
 
+  lookup(hostname, options, callback) {
+    return dns.lookup(hostname, { family: 4 }, callback);
+  },
+});
 async function verifyTransporter() {
   try {
     console.log("Verifying SMTP connection...");
