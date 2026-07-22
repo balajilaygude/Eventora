@@ -16,7 +16,8 @@ const otpModel = require("../Models/opt")
 // }
 
 async function bookEvent(req,res) {
-    const {eventId,otp}=req.body;
+    const {eventId}=req.body;
+    // const {eventId,otp}=req.body;
     // const otpRecord=await otpModel.findOne({email:req.user.email,otp,action:"event_booking"});
     // if(!otpRecord){
     //     return res.status(404).json({message:"Invalid or Expired otp "})

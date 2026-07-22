@@ -22,6 +22,7 @@ const UserDashboard = () => {
         try {
             const { data } = await api.get('/bookings/my');
             setBookings(data)
+            console.log(bookings)
         } catch (error) {
             console.error('Error fetching bookings', error);
         } finally {
@@ -32,7 +33,7 @@ const UserDashboard = () => {
     const cancelBooking = async (id) => {
         if (window.confirm('Are you sure you want to cancel this booking request?')) {
             try {
-                await api.delete(`/bookings/${id}`);
+                const value=await api.delete(`/bookings/${id}`);
                 fetchBookings();
             } catch (error) {
                 alert(error.response?.data?.message || 'Error cancelling booking');
@@ -99,7 +100,7 @@ const UserDashboard = () => {
                                         <div className="text-sm text-gray-500 mb-4 space-y-1">
                                             <p><strong className="text-gray-700">Date:</strong> {new Date(booking.eventId.date).toLocaleDateString()}</p>
                                             <p><strong className="text-gray-700">Amount:</strong> {booking.amount === 0 ? 'Free' : `₹${booking.amount}`}</p>
-                                            <p><strong className="text-gray-700">Requested:</strong> {new Date(booking.bookedAt).toLocaleDateString()}</p>
+                                            <p><strong className="text-gray-700">Requested:</strong> {new Date(booking.createdAt).toLocaleDateString()}</p>
                                         </div>
                                     </>
                                 ) : (

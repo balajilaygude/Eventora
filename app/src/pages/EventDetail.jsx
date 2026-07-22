@@ -10,7 +10,7 @@ const EventDetail = () => {
     const { user } = useContext(AuthContext);
     const [event, setEvent] = useState(null);
     const [loading, setLoading] = useState(true);
-    // const [bookingLoading, setBookingLoading] = useState(false);
+    const [bookingLoading, setBookingLoading] = useState(false);
     // const [otp, setOtp] = useState('');
     // const [showOTP, setShowOTP] = useState(false);
     const [error, setError] = useState('');
@@ -21,6 +21,8 @@ const EventDetail = () => {
             try {
                 const { data } = await api.get(`/events/${id}`);
                 setEvent(data);
+                console.log(data)
+                console.log(data.imageURL)
             } catch (err) {
                 setError('Failed to load event details.');
             } finally {
@@ -35,24 +37,24 @@ const EventDetail = () => {
             navigate('/login');
             return;
         }
-        // setBookingLoading(true);
+        setBookingLoading(true);
         setError('');
         setSuccessMsg('');
 
         try {
-            if (!showOTP) {
-                await api.post('/bookings/send-otp');
-                setShowOTP(true);
-                setSuccessMsg('OTP sent to your email. Please verify to confirm booking.');
-            } else {
-                await api.post('/bookings', { eventId: event._id, otp });
+            // if (!showOTP) {
+                // await api.post('/bookings/send-otp');
+                // setShowOTP(true);
+                // setSuccessMsg('OTP sent to your email. Please verify to confirm booking.');
+            // } else {
+                const value=await api.post('/bookings', { eventId: event._id});
                 setSuccessMsg('Booking requested! Awaiting admin confirmation.');
-                setShowOTP(false);
+                // setShowOTP(false);
                 // Update local seats count dynamically after booking
                 setEvent({ ...event, availableSeats: event.availableSeats - 1 });
-            }
+            // }
         } catch (err) {
-            setError(err.response?.data?.error || 'Booking failed');
+            setError(err.response?.data?.error || 'Booking failed')
         } finally {
             setBookingLoading(false);
         }
@@ -65,8 +67,8 @@ const EventDetail = () => {
 
     return (
         <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden mt-8">
-            {event.image ? (
-                <img src={event.image} alt={event.title} className="w-full h-80 object-cover" />
+            {event.imageURL ? (
+                <img src={event.imageURL} alt={event.title} className="w-full h-80 object-cover" />
             ) : (
                 <div className="w-full h-64 bg-gray-900 flex items-center justify-center text-white/50 text-6xl font-black uppercase tracking-widest">
                     {event.category}
@@ -130,7 +132,7 @@ const EventDetail = () => {
                             </div>
                         </div>
 
-                        {showOTP && (
+                        {/* {showOTP && (
                             <div className="mb-4">
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">Enter OTP to Confirm</label>
                                 <input
@@ -143,17 +145,17 @@ const EventDetail = () => {
                                     maxLength="6"
                                 />
                             </div>
-                        )}
+                        )} */}
 
                         <button
                             onClick={handleBooking}
-                            disabled={isSoldOut || bookingLoading || (showOTP && !otp)}
-                            className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition shadow-lg ${isSoldOut || (successMsg && !showOTP)
+                            disabled={isSoldOut || bookingLoading }
+                            className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition shadow-lg ${isSoldOut || successMsg
                                 ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                                 : 'bg-gray-900 hover:bg-black text-white hover:shadow-xl hover:-translate-y-1'
                                 }`}
                         >
-                            {bookingLoading ? 'Processing...' : (showOTP ? 'Verify OTP & Confirm' : (successMsg && !showOTP ? 'Request Sent' : (isSoldOut ? 'Sold Out' : 'Confirm Registration')))}
+                            {bookingLoading ? 'Processing...' :  (successMsg  ? 'Request Sent' : (isSoldOut ? 'Sold Out' : 'Confirm Registration'))}
                         </button>
                         {error && <p className="text-red-500 mt-4 text-center font-medium bg-red-50 p-2 rounded">{error}</p>}
                         {successMsg && <p className="text-green-600 mt-4 text-center font-medium bg-green-50 p-2 rounded">{successMsg}</p>}
