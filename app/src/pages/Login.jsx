@@ -18,22 +18,22 @@ const Login = () => {
         setLoading(true);
         setError('');
         try {
-            if (!showOTP) {
+            // if (!showOTP) {
                 const data = await login(email, password);
                 if (data.role === 'admin') navigate('/admin');
                 else navigate('/dashboard');
-            } else {
-                const data = await verifyOTP(email, otp);
-                if (data.role === 'admin') navigate('/admin');
-                else navigate('/dashboard');
-            }
+            // } else {
+                // const data = await verifyOTP(email, otp);
+                // if (data.role === 'admin') navigate('/admin');
+                // else navigate('/dashboard');
+            // }
         } catch (err) {
-            if (err.needsVerification) {
-                setShowOTP(true);
-                setError('Account not verified. A new OTP has been sent to your email.');
-            } else {
+            // if (err.needsVerification) {
+            //     setShowOTP(true);
+            //     setError('Account not verified. A new OTP has been sent to your email.');
+            // } else {
                 setError(err.message || err);
-            }
+            // }
         } finally {
             setLoading(false);
         }
@@ -49,7 +49,7 @@ const Login = () => {
             {error && <div className="bg-red-50 text-red-600 p-3 rounded-lg mb-6 text-center shadow-inner border border-red-100">{error}</div>}
 
             <form onSubmit={handleSubmit} className="space-y-6">
-                {!showOTP ? (
+                {/* {!showOTP ? (
                     <>
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
@@ -85,13 +85,36 @@ const Login = () => {
                             maxLength="6"
                         />
                     </div>
-                )}
+                )} */}
+                    <>
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+                            <input
+                                type="email"
+                                required
+                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-700 focus:border-gray-700 transition shadow-sm"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
+                            <input
+                                type="password"
+                                required
+                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-700 focus:border-gray-700 transition shadow-sm"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+                    </>
+             
                 <button
                     type="submit"
                     disabled={loading}
                     className="w-full bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-black focus:ring-4 focus:ring-gray-200 transition shadow-md"
                 >
-                    {loading ? 'Processing...' : (showOTP ? 'Verify OTP & Log In' : 'Sign In')}
+                    {loading ? 'Processing...' : 'Sign In'}
                 </button>
             </form>
 

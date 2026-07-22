@@ -10,9 +10,9 @@ const EventDetail = () => {
     const { user } = useContext(AuthContext);
     const [event, setEvent] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [bookingLoading, setBookingLoading] = useState(false);
-    const [otp, setOtp] = useState('');
-    const [showOTP, setShowOTP] = useState(false);
+    // const [bookingLoading, setBookingLoading] = useState(false);
+    // const [otp, setOtp] = useState('');
+    // const [showOTP, setShowOTP] = useState(false);
     const [error, setError] = useState('');
     const [successMsg, setSuccessMsg] = useState('');
 
@@ -35,7 +35,7 @@ const EventDetail = () => {
             navigate('/login');
             return;
         }
-        setBookingLoading(true);
+        // setBookingLoading(true);
         setError('');
         setSuccessMsg('');
 

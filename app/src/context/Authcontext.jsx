@@ -1,69 +1,73 @@
-import React, { createContext, useState, useEffect } from 'react';
-import api from '../utils/Axios';
+import React, { createContext, useState, useEffect } from "react";
+import api from "../utils/Axios";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const userInfo = localStorage.getItem('userInfo');
-        if (userInfo) {
-            setUser(JSON.parse(userInfo));
-        }
-        setLoading(false);
-    }, []);
+  useEffect(() => {
+    const userInfo = localStorage.getItem("userInfo");
+    if (userInfo) {
+      setUser(JSON.parse(userInfo));
+    }
+    setLoading(false);
+  }, []);
 
-    const login = async (email, password) => {
-        try {
-            const { data } = await api.post('/auth/login', { email, password });
-            setUser(data);
-            console.log(data)
-            localStorage.setItem('userInfo', JSON.stringify(data));
-            localStorage.setItem('token', data.token);
-            return data;
-        } catch (error) {
-            if (error.response?.data?.needsVerification) throw error.response.data;
-            throw error.response?.data?.message || 'Login failed';
-        }
-    };
+  const login = async (email, password) => {
+    try {
+      const { data } = await api.post("/auth/login", { email, password });
+      setUser(data);
+      console.log(data);
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      localStorage.setItem("token", data.token);
+      return data;
+    } catch (error) {
+      if (error.response?.data?.needsVerification) throw error.response.data;
+      throw error.response?.data?.message || "Login failed";
+    }
+  };
 
-    const register = async (name, email, password) => {
-        console.log("Block4")
-        try {
-            console.log("Block5")
-            const { data } = await api.post('/auth/register', { name, email, password });
-            console.log(data)
-            console.log("Block6")
-            return data; // Returns { message, email }
+  const register = async (name, email, password) => {
+    try {
+      const { data } = await api.post("/auth/register", {
+        name,
+        email,
+        password,
+      });
+      console.log(data);
+      setUser(data)
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      localStorage.setItem("token", data.token);
+      return data;
+    } catch (error) {
+      throw error.response?.data?.error || "Registration failed";
+    }
+  };
 
-        } catch (error) {
-            throw error.response?.data?.error || 'Registration failed';
-        }
-    };
+  // const verifyOTP = async (email, otp) => {
+  //     try {
+  //         const { data } = await api.post('/auth/verifyotp', { email, otp });
+  //         setUser(data);
+  //         localStorage.setItem('userInfo', JSON.stringify(data));
+  //         localStorage.setItem('token', data.token);
+  //         return data;
+  //     } catch (error) {
+  //         throw error.response?.data?.message || 'OTP verification failed';
+  //     }
+  // };
 
-    const verifyOTP = async (email, otp) => {
-        try {
-            const { data } = await api.post('/auth/verifyotp', { email, otp });
-            setUser(data);
-            localStorage.setItem('userInfo', JSON.stringify(data));
-            localStorage.setItem('token', data.token);
-            return data;
-        } catch (error) {
-            throw error.response?.data?.message || 'OTP verification failed';
-        }
-    };
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("token");
+  };
 
-    const logout = () => {
-        setUser(null);
-        localStorage.removeItem('userInfo');
-        localStorage.removeItem('token');
-    };
-
-    return (
-        <AuthContext.Provider value={{ user, login, register, verifyOTP, logout, loading }}>
-            {!loading && children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+      {/* <AuthContext.Provider value={{ user, login, register, verifyOTP, logout, loading }}> */}
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 };

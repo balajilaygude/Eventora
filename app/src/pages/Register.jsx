@@ -6,31 +6,28 @@ const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [otp, setOtp] = useState('');
-    const [showOTP, setShowOTP] = useState(false);
+    // const [otp, setOtp] = useState('');
+    // const [showOTP, setShowOTP] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const { register, verifyOTP } = useContext(AuthContext);
+    const { register } = useContext(AuthContext);
+    // const { register, verifyOTP } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError('');
-        console.log("Block1")
         try {
-            console.log("Block2")
-            if (!showOTP) {
-                console.log("Block3")
+            // if (!showOTP) {
                 await register(name, email, password);
-                console.log("Block7")
-                setShowOTP(true);
-                setError('');
-            } else {
-                await verifyOTP(email, otp);
+                // setShowOTP(true);
+                // setError('');
+            // } else {
+                // await verifyOTP(email, otp);
                 navigate('/dashboard');
-            }
+            // }
         } catch (err) {
             setError(err);
         } finally {
@@ -48,7 +45,7 @@ const Register = () => {
             {error && <div className="bg-red-50 text-red-600 p-3 rounded-lg mb-6 text-center shadow-inner border border-red-100">{error}</div>}
 
             <form onSubmit={handleSubmit} className="space-y-5">
-                {!showOTP ? (
+                {/* {!showOTP ? (
                     <>
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
@@ -97,22 +94,53 @@ const Register = () => {
                             maxLength="6"
                         />
                     </div>
-                )}
+                )} */}
 
+                    <>
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+                            <input
+                                type="text"
+                                required
+                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-700 transition shadow-sm"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+                            <input
+                                type="email"
+                                required
+                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-700 transition shadow-sm"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
+                            <input
+                                type="password"
+                                required
+                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-700 transition shadow-sm"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+                    </>
                 <button
                     type="submit"
                     disabled={loading}
                     className="w-full bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-black focus:ring-4 focus:ring-gray-200 transition shadow-md mt-4"
                 >
-                    {loading ? 'Processing...' : (showOTP ? 'Verify & Complete' : 'Sign Up')}
+                    {loading ? 'Processing...' : 'Sign Up'}
                 </button>
             </form>
 
-            {!showOTP && (
                 <p className="text-center mt-6 text-gray-600">
                     Already have an account? <Link to="/login" className="text-gray-900 font-bold hover:underline">Sign in</Link>
                 </p>
-            )}
+        
         </div>
     );
 };
