@@ -26,7 +26,6 @@ const Home = () => {
     try {
       const { data } = await api.get(`/events?search=${search}`);
       setEvents(data);
-      console.log(data)
     } catch (error) {
       console.error("Error fetching events:", error);
     } finally {
@@ -38,27 +37,27 @@ const Home = () => {
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <div className="relative bg-black text-white rounded-3xl overflow-hidden mb-12 shadow-2xl">
-        <div className="absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=3000&auto=format&fit=crop')] bg-cover bg-center"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+        <div className="absolute inset-0 opacity-60 bg-[url('https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=3000&auto=format&fit=crop')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
         <div className="relative p-10 md:p-20 text-center flex flex-col items-center z-10">
           <span className="bg-white/20 text-white backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-6 border border-white/20">
             Welcome to Eventora
           </span>
-          <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight tracking-tight drop-shadow-lg">
+          <h1 className="text-[40px] sm:text-5xl md:text-7xl font-black mb-6 leading-tight tracking-tight drop-shadow-lg">
             Find Your Next <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">
               Unforgettable
             </span>{" "}
             Experience
           </h1>
-          <p className="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl font-light leading-relaxed">
             Discover the best tech conferences, late-night music festivals, and
             hands-on workshops happening directly in your area. Secure your spot
             today.
           </p>
 
           <div className="w-full max-w-2xl mx-auto relative flex items-center shadow-2xl group">
-            <FaSearch className="absolute left-6 text-gray-500 text-xl group-focus-within:text-black transition-colors" />
+            <FaSearch className="absolute z-50 left-6 text-gray-500 text-xl group-focus-within:text-black transition-colors" />
             <input
               type="text"
               placeholder="Search events by title..."
