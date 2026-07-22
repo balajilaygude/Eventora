@@ -33,12 +33,12 @@ async function registerUser(req, res) {
     // });
 
     res.status(200).json({
-    message: "Login successfully",
-    _id: userExists._id,
-    name: userExists.name,
-    email: userExists.email,
-    role: userExists.role,
-    token: generateToken(userExists._id, userExists.role),
+    message: "Sign up successfully",
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    token: generateToken(user._id, user.role),
   })
 
 

@@ -1,7 +1,7 @@
 const bookingModel=require("../Models/bookingmodel")
 const eventModel = require("../Models/eventmodel")
 const otpModel = require("../Models/opt")
-const { sendBookingEmail, sendOtpEmail } = require("../Utils/email")
+// const { sendBookingEmail, sendOtpEmail } = require("../Utils/email")
 
 // const generateOtp=()=>{
 //     return Math.floor(100000 +Math.random()*900000).toString();
@@ -103,4 +103,5 @@ async function cancelEvent(req,res) {
     res.json({message:"Booking cancelled"})
 }
 
-module.exports={getMyBookings,bookEvent,confirmEvent,cancelEvent,sendBookingOTP}
+// module.exports={getMyBookings,bookEvent,confirmEvent,cancelEvent,sendBookingOTP}
+module.exports={getMyBookings,bookEvent,confirmEvent,cancelEvent}
