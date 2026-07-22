@@ -2,7 +2,6 @@ const eventModel = require("../Models/eventmodel");
 
 async function getAllEvent(req, res) {
   const filters = {};
-  console.log(req.query.search);
   try {
     if (req.query.search) {
       filters.title = {
@@ -10,7 +9,6 @@ async function getAllEvent(req, res) {
         $options: "i",
       };
     }
-    console.log(filters)
     const eventSet = await eventModel.find(filters);
     return res.json(eventSet);
   } catch (error) {
@@ -32,7 +30,6 @@ async function getEventById(req, res) {
 }
 
 async function createEvent(req, res) {
-  console.log("hi create",req.body)
   const {
     title,
     description,
@@ -57,7 +54,6 @@ async function createEvent(req, res) {
       imageURL,
       createdBy:req.user._id
     });
-    console.log(eventNew)
     res.status(200).json({message:"Done Event Created"});
   } catch (error) {
     console.log(error)
