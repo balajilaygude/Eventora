@@ -58,6 +58,7 @@ async function getMyBookings(req,res) {
 }
 
 async function confirmEvent(req,res) {
+    console.log(req.body)
     const paymentStatus=req.body.paymentStatus;
     if(!["paid","non_paid"].includes(paymentStatus)){
         return res.status(400).json({error:"Invalid Payment status"})

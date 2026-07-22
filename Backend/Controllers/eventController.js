@@ -37,7 +37,6 @@ async function createEvent(req, res) {
     location,
     categary,
     totalSeats,
-    availableSeats,
     ticketPrice,
     imageURL,
   } = req.body;
@@ -49,7 +48,7 @@ async function createEvent(req, res) {
       location,
       categary,
       totalSeats,
-      availableSeats,
+      availableSeats:totalSeats,
       ticketPrice,
       imageURL,
       createdBy:req.user._id

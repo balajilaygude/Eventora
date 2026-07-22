@@ -22,7 +22,6 @@ const EventDetail = () => {
                 const { data } = await api.get(`/events/${id}`);
                 setEvent(data);
                 console.log(data)
-                console.log(data.imageURL)
             } catch (err) {
                 setError('Failed to load event details.');
             } finally {

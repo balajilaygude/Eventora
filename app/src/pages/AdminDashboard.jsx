@@ -44,11 +44,13 @@ const AdminDashboard = () => {
         e.preventDefault();
         console.log(formData)
         try {
-            await api.post('/events', formData);
+            const value=await api.post('/events', formData);
             setShowEventForm(false);
+            console.log(value)
             setFormData({ title: '', description: '', date: '', location: '', category: '', totalSeats: '', ticketPrice: '', image: '' });
             fetchData();
         } catch (error) {
+            console.log(error)
             alert(error.response?.data?.message || 'Error creating event');
         }
     };
@@ -66,7 +68,7 @@ const AdminDashboard = () => {
 
     const handleConfirmBooking = async (id, paymentStatus) => {
         try {
-            await api.put(`/bookings/${id}/confirm`, { paymentStatus });
+            const value=await api.put(`/bookings/${id}/confirm`, { paymentStatus });
             fetchData();
         } catch (error) {
             alert(error.response?.data?.message || 'Error confirming booking');
