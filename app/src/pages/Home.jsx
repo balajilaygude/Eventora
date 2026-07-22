@@ -138,16 +138,16 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="mt-auto">
-                  <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+                  {/* <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
                     <div
                       className="bg-gray-700 h-2 rounded-full"
                       style={{
                         width: `${(event.availableSeats / event.totalSeats) * 100}%`,
                       }}
                     ></div>
-                  </div>
+                  </div> */}
                   <p className="text-xs text-gray-500 mb-4">
-                    {event.availableSeats} of {event.totalSeats} seats remaining
+                    {event.availableSeats?event.availableSeats:0} of {event.totalSeats} seats remaining
                   </p>
                   <Link
                     to={`/events/${event._id}`}
