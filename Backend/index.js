@@ -25,7 +25,6 @@ app.use("/api/bookings",bookingRoute)
 
 
 app.listen(PORT,()=>{
-
     console.log("Server started on ",PORT)
     dbConnect()
 })

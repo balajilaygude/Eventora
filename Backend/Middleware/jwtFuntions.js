@@ -8,7 +8,6 @@ function generateToken(id,role) {
 
 function verifyToken(token){
     const decoded=jwt.verify(token,process.env.SECRET)
-    console.log(decoded)
     return decoded
 }
 
