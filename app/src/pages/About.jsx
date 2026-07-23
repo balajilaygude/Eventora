@@ -77,7 +77,7 @@ export default function About() {
 
 <div className="max-w-6xl mx-auto px-6 py-16">
   <div className="text-center max-w-3xl mx-auto">
-    <span className="text-blue-600 font-semibold uppercase tracking-wider">
+    <span className="text-blue-600 text-3xl font-semibold uppercase tracking-wider">
       How It Works
     </span>
 
