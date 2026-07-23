@@ -7,7 +7,7 @@ import {
   FaTachometerAlt,
   FaCheckCircle,
 } from "react-icons/fa";
-
+import { TiTick } from "react-icons/ti";
 export default function About() {
   const features = [
     {
@@ -61,9 +61,7 @@ export default function About() {
 
           <h1 className="mt-6 text-5xl md:text-6xl font-extrabold leading-tight">
             Making Event Booking
-            <span className="block text-blue-600">
-              Simple, Secure & Modern
-            </span>
+            <span className="block text-blue-600">Simple, Secure & Modern</span>
           </h1>
 
           <p className="max-w-3xl mx-auto mt-6 text-zinc-600 text-lg leading-8">
@@ -75,7 +73,50 @@ export default function About() {
         </div>
       </section>
 
-      {/* Features */}
+ 
+
+<div className="max-w-6xl mx-auto px-6 py-16">
+  <div className="text-center max-w-3xl mx-auto">
+    <span className="text-blue-600 font-semibold uppercase tracking-wider">
+      How It Works
+    </span>
+
+    <h2 className="text-4xl font-bold text-black mt-3">
+      Simple & Secure Event Booking
+    </h2>
+
+    <p className="mt-6 text-lg text-gray-600 leading-8">
+      Booking an event with <span className="font-semibold">Eventora is
+      quick and hassle-free</span>. Browse exciting events, choose your favorite one,
+      and submit your booking request in just a few clicks.
+      <br />
+      <br />
+      <span className="text-blue-700 font-semibold">Every booking is reviewed by our administrators </span> to ensure seat
+      availability and event authenticity. Once your booking is approved, your
+      digital ticket becomes available instantly. If a booking cannot be
+      confirmed, you'll be notified with the updated status so you're always
+      informed.
+    </p>
+  </div>
+  <h2 className="text-center text-3xl mt-4 font-bold text-blue-600">Demo Images </h2>
+
+  {/* Images */}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4 ">
+    <img
+      src="/header.png"
+      alt="Booking Process"
+      className="w-full h-80 object-contain rounded-2xl shadow-lg"
+    />
+
+    <img
+      src="/body.png"
+      alt="Digital Ticket"
+      className="w-full h-80 object-contain rounded-2xl shadow-lg p-2"
+    />
+  </div>
+</div>
+
+     {/* Features */}
       <section className="max-w-7xl mx-auto px-6 py-20">
         <div className="text-center mb-14">
           <h2 className="text-4xl font-bold">
@@ -97,9 +138,7 @@ export default function About() {
                 {feature.icon}
               </div>
 
-              <h3 className="mt-6 text-xl font-semibold">
-                {feature.title}
-              </h3>
+              <h3 className="mt-6 text-xl font-semibold">{feature.title}</h3>
 
               <p className="mt-3 text-zinc-600 leading-7">
                 {feature.description}
@@ -142,9 +181,7 @@ export default function About() {
           </div>
 
           <div className="bg-white border border-zinc-200 rounded-3xl shadow-lg p-10">
-            <h3 className="text-2xl font-bold mb-8">
-              Technology Stack
-            </h3>
+            <h3 className="text-2xl font-bold mb-8">Technology Stack</h3>
 
             <div className="grid grid-cols-2 gap-4">
               {[
@@ -173,9 +210,7 @@ export default function About() {
 
       {/* Footer Section */}
       <section className="max-w-5xl mx-auto px-6 py-24 text-center">
-        <h2 className="text-4xl font-bold">
-          More Than Just Event Booking
-        </h2>
+        <h2 className="text-4xl font-bold">More Than Just Event Booking</h2>
 
         <p className="mt-6 text-lg text-zinc-600 leading-8">
           Eventora is a full-stack MERN application built to demonstrate secure
