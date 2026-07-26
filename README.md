@@ -1,139 +1,266 @@
-Eventora – Event Booking & Management System
-Overview
+# 🎉 Eventora – Event Booking & Management System
 
-Eventora is a full-stack MERN Event Booking & Management platform that enables users to discover, book, and manage events while providing administrators with a powerful dashboard to oversee events, bookings, users, and ticket statuses.
+## Overview
 
-The project was built to gain hands-on experience in developing a production-ready event management system featuring secure authentication, role-based authorization, email verification, and complete CRUD operations. It focuses on delivering a seamless booking experience while ensuring security, scalability, and efficient event administration.
+**Eventora** is a full-stack MERN Event Booking & Management platform that enables users to discover, book, and manage events while providing administrators with a dedicated dashboard to manage events, bookings, users, and booking statuses.
 
-Key Features
-User registration and login with JWT Authentication
-Email verification using OTP via Nodemailer
-OTP generation with 5-minute expiration and secure database storage
-Separate dashboards for Admin and Users
-Browse and search available events
-Book events with seat availability management
-Admin event management (Create, Update & Delete)
-Manage bookings and enrolled users
-Update booking status (Confirmed, Cancelled)
-Track payment status (Paid / Unpaid)
-Protected routes with Role-Based Access Control (RBAC)
-Responsive modern UI built with Tailwind CSS
-RESTful API architecture
-Secure password hashing using bcrypt
-Production-ready backend architecture
-Fully deployed and accessible online
-Tech Stack
-Frontend
-React.js
-Tailwind CSS
-Context API
-React Router DOM
-Axios
-React Icons
-Backend
-Node.js
-Express.js
-MongoDB
-Mongoose
-JWT (JSON Web Token)
-bcrypt
-Nodemailer
-CORS
-dotenv
-Development
-Nodemon
-Architecture
+The project was built to gain hands-on experience in developing a production-ready event management system with secure authentication, role-based authorization, email verification, and complete CRUD operations. It focuses on delivering a seamless booking experience while ensuring security, scalability, and efficient event administration.
+
+---
+
+## ✨ Key Features
+
+- 🔐 User registration and login with JWT Authentication
+- 📧 Email verification using OTP via Nodemailer
+- ⏱️ OTP generation with 5-minute expiration
+- 👤 Separate dashboards for Admin and Users
+- 🎫 Browse and book available events
+- ➕ Create, update, and delete events (Admin)
+- 👥 Manage bookings and enrolled users
+- ✅ Update booking status (Confirmed / Cancelled)
+- 💳 Track payment status (Paid / Unpaid)
+- 🛡️ Protected routes with Role-Based Access Control (RBAC)
+- 📱 Responsive UI built with Tailwind CSS
+- ⚡ RESTful API architecture
+- 🔒 Secure password hashing using bcrypt
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- React.js
+- Tailwind CSS
+- Context API
+- React Router DOM
+- Axios
+- React Icons
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT (JSON Web Token)
+- bcrypt
+- Nodemailer
+- CORS
+- dotenv
+
+### Development
+
+- Nodemon
+
+---
+
+## 🏗️ Architecture
+
+```text
 React Frontend (Tailwind CSS)
             │
             ▼
- Context API & Axios
+     Context API & Axios
             │
             ▼
- Express.js REST APIs
+     Express REST APIs
             │
             ▼
-JWT Authentication Middleware
+ JWT Authentication Middleware
             │
             ▼
- MongoDB Atlas (Mongoose)
+   MongoDB Atlas (Mongoose)
             │
             ▼
-Nodemailer (OTP Verification)
-How It Works
-Simple & Secure Event Booking
+ Nodemailer (OTP Verification)
+```
 
-Booking an event with Eventora is quick, secure, and hassle-free.
+---
 
-Users can browse available events, explore event details, and submit a booking request in just a few clicks.
+## 🚀 How It Works
 
-Every booking is reviewed by administrators to ensure seat availability and proper event management. Once approved, the booking status is updated and users can track their booking directly from their dashboard. If a booking cannot be confirmed, users are notified with the updated status, ensuring complete transparency throughout the booking process.
+### Simple & Secure Event Booking
 
-Administrators can efficiently manage events, monitor bookings, update booking statuses, and oversee enrolled participants from a centralized dashboard.
+Booking an event with **Eventora** is quick and hassle-free.
 
-Challenges Faced
-1. Role-Based Access Control
+1. Register and verify your email using OTP.
+2. Login securely using JWT Authentication.
+3. Browse available events.
+4. View event details.
+5. Book your preferred event.
+6. Administrators review booking requests.
+7. Booking status is updated.
+8. Users can track bookings from their dashboard.
 
-Designed separate dashboards for administrators and users while ensuring secure access through middleware-based authorization and protected routes.
+The admin dashboard allows administrators to create events, manage bookings, update booking statuses, and monitor enrolled participants from one place.
 
-2. OTP Email Verification
+---
 
-Implemented an email verification system using Nodemailer that generates unique OTPs, stores them securely in MongoDB with a 5-minute expiration, and validates them before allowing user authentication.
+## 🔒 Security Implementations
 
-3. Booking & Seat Management
+- JWT Authentication & Authorization
+- Password Hashing using bcrypt
+- OTP-based Email Verification
+- Role-Based Access Control (RBAC)
+- Protected API Routes
+- Input Validation
+- Environment Variables using dotenv
 
-Developed a booking workflow that tracks available seats, prevents overbooking, and enables administrators to manage booking confirmations and cancellations efficiently.
+---
 
-4. Authentication & Security
+## ⚡ Challenges Faced
 
-Implemented JWT authentication with secure password hashing using bcrypt, protected APIs, middleware authorization, and secure environment variable management.
+### 1. Role-Based Access Control
 
-Security Implementations
-JWT Authentication & Authorization
-bcrypt Password Hashing
-OTP-based Email Verification
-Role-Based Access Control (RBAC)
-Protected API Routes
-Input Validation & Error Handling
-Environment Variable Management using dotenv
-Project Structure
-Frontend
-├── React.js
-├── Tailwind CSS
-├── Context API
-├── React Router
-└── Axios
+Built separate Admin and User dashboards while restricting access through middleware-based authorization.
 
-Backend
-├── Node.js
-├── Express.js
-├── MongoDB
-├── Mongoose Models
-├── Authentication Middleware
-├── Controllers
-├── Routes
-└── Nodemailer Services
-Future Improvements
-Online Payment Gateway Integration (Stripe/Razorpay)
-Event Categories & Advanced Filtering
-Event Search with Pagination
-Ticket QR Code Generation
-Event Reviews & Ratings
-Email Notifications for Booking Updates
-Event Analytics Dashboard
-Admin Reports & Revenue Tracking
-Google OAuth Authentication
-Event Wishlist & Favorites
-Live Project
+### 2. OTP Email Verification
 
-🌐 Live Demo: https://eventora.onrender.com/
+Implemented a secure OTP verification system with 5-minute expiration using Nodemailer and MongoDB.
 
-Replace the URL with your deployed application link if different.
+### 3. Booking Management
 
-Impact
+Designed APIs for event booking while enabling administrators to manage booking confirmations, cancellations, and enrolled users efficiently.
 
-Eventora demonstrates strong full-stack MERN development skills through the implementation of secure authentication, role-based authorization, OTP email verification, RESTful API development, and scalable CRUD operations. The project showcases the ability to build a production-ready event booking platform with separate user and administrator workflows while emphasizing security, maintainability, and modern web application architecture.
+### 4. Authentication & Security
 
-Making Event Booking
-Simple, Secure & Modern
+Implemented JWT authentication, bcrypt password hashing, protected routes, and middleware authorization for secure application access.
 
-Eventora is a modern Event Booking & Management platform built using the MERN Stack. Whether you're looking to attend conferences, workshops, cultural events, seminars, or community gatherings, Eventora provides a smooth and intuitive booking experience while giving organizers powerful tools to manage
+
+
+---
+
+## 🚀 Installation
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/your-username/Eventora.git
+```
+
+```bash
+cd Eventora
+```
+
+### Install Dependencies
+
+#### Frontend
+
+```bash
+cd client
+npm install
+```
+
+#### Backend
+
+```bash
+cd server
+npm install
+```
+
+### Configure Environment Variables
+
+Create a `.env` file inside the **server** folder.
+
+```env
+PORT=5000
+
+MONGO_URI=your_mongodb_connection
+
+JWT_SECRET=your_secret_key
+
+EMAIL_USER=your_email
+
+EMAIL_PASS=your_email_password
+```
+
+### Run the Application
+
+#### Backend
+
+```bash
+npm run dev
+```
+
+#### Frontend
+
+```bash
+npm run dev
+```
+
+---
+
+## 🌟 Future Improvements
+
+- 💳 Online Payment Integration
+- 🎟️ QR Code Tickets
+- ⭐ Event Reviews & Ratings
+- 🔍 Advanced Search & Filters
+- 📧 Booking Email Notifications
+- 📊 Admin Analytics Dashboard
+- ❤️ Wishlist & Favorites
+- 📅 Calendar Integration
+
+---
+
+## 🌐 Live Demo
+
+**Live Demo:** https://your-live-link.com
+
+---
+
+## 💡 Impact
+
+Eventora demonstrates strong full-stack MERN development skills through secure authentication, role-based authorization, OTP email verification, RESTful API development, and scalable CRUD operations.
+
+The project showcases the ability to build a production-ready Event Booking & Management platform with separate user and administrator workflows while emphasizing security, maintainability, and modern web application architecture.
+
+---
+
+# 🎟️ Making Event Booking
+
+## Simple, Secure & Modern
+
+**Eventora** is a modern Event Booking & Management platform built using the **MERN Stack**.
+
+Whether you're attending a conference, workshop, seminar, cultural event, or community meetup, Eventora provides a fast, secure, and intuitive booking experience while giving administrators complete control over event management.
+
+---
+
+## 📸 Screenshots
+
+> Add screenshots here.
+
+### Home Page
+
+```
+Screenshot Here
+```
+
+### User Dashboard
+
+```
+Screenshot Here
+```
+
+### Admin Dashboard
+
+```
+Screenshot Here
+```
+
+### Event Details
+
+```
+Screenshot Here
+```
+
+---
+
+## 👨‍💻 Author
+
+**Your Name**
+
+- GitHub: https://github.com/yourusername
+- LinkedIn: https://linkedin.com/in/yourusername
