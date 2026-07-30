@@ -185,11 +185,7 @@ npm run dev
 
 #### Frontend
 
-```bash
-npm run dev
-```
 
----
 
 ## 🌟 Future Improvements
 
