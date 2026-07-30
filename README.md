@@ -183,8 +183,6 @@ EMAIL_PASS=your_email_password
 npm run dev
 ```
 
-#### Frontend
-
 
 
 ## 🌟 Future Improvements
