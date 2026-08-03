@@ -55,15 +55,12 @@ const totalPaid = bookings.reduce((sum, booking) => {
 
     const handleCreateEvent = async (e) => {
         e.preventDefault();
-        console.log(formData)
         try {
-            const value=await api.post('/events', formData);
+            await api.post('/events', formData);
             setShowEventForm(false);
-            console.log(value)
             setFormData({ title: '', description: '', date: '', location: '', category: '', totalSeats: '', ticketPrice: '', image: '' });
             fetchData();
         } catch (error) {
-            console.log(error)
             alert(error.response?.data?.message || 'Error creating event');
         }
     };
