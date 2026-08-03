@@ -67,14 +67,16 @@ async function confirmEvent(req,res) {
     if(!booking){
         return res.status(400).json({error:"Booking not found"})
     }
-    if(booking.status==="confimed"){
+    console.log(booking)
+    if(booking.status==="confirmed"){
         return res.status(400).json({error:"Booking is already confiremed"})
     }
     const event=await eventModel.findById(booking.eventId._id)
     if(event.totalSeats<=0){
         return res.status(400).json({error:"No seats available"})
     }
-    booking.status="confimed";
+    booking.status="confirmed";
+    console.log(booking ," part 2")
     if(paymentStatus){
         booking.paymentStatus=paymentStatus;
     }
