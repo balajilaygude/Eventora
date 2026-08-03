@@ -24,7 +24,7 @@ function App() {
                         <Route path="/register" element={<Register />} />
                         <Route path="/dashboard" element={<UserDashboard/>} />
                         <Route path="/admin" element={<AdminDashboard />} />
-                        <Route path="*" element={<h1 className="text-3xl font-bold text-center mt-20">404 - Page Not Found</h1>} />
+                        <Route path="*" element={<h1 className="text-3xl font-bold text-center text-blue-600 mt-20">404 - Page Not Found</h1>} />
                     </Routes>
                 </main>
             </div>

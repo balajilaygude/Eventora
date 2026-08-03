@@ -58,7 +58,6 @@ async function getMyBookings(req,res) {
 }
 
 async function confirmEvent(req,res) {
-    console.log(req.body)
     const paymentStatus=req.body.paymentStatus;
     if(!["paid","non_paid"].includes(paymentStatus)){
         return res.status(400).json({error:"Invalid Payment status"})
@@ -67,7 +66,6 @@ async function confirmEvent(req,res) {
     if(!booking){
         return res.status(400).json({error:"Booking not found"})
     }
-    console.log(booking)
     if(booking.status==="confirmed"){
         return res.status(400).json({error:"Booking is already confiremed"})
     }
@@ -76,7 +74,6 @@ async function confirmEvent(req,res) {
         return res.status(400).json({error:"No seats available"})
     }
     booking.status="confirmed";
-    console.log(booking ," part 2")
     if(paymentStatus){
         booking.paymentStatus=paymentStatus;
     }

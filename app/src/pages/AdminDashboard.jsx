@@ -80,11 +80,13 @@ const totalPaid = bookings.reduce((sum, booking) => {
     };
 
     const handleConfirmBooking = async (id, paymentStatus) => {
+        console.log(id , paymentStatus)
         try {
             const value=await api.put(`/bookings/${id}/confirm`, { paymentStatus });
+            console.log(value)
             fetchData();
         } catch (error) {
-            alert(error.response?.data?.message || 'Error confirming booking');
+            alert(error.response?.data || 'Error confirming booking');
         }
     };
 
