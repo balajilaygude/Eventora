@@ -44,6 +44,7 @@ const totalPaid = bookings.reduce((sum, booking) => {
                 api.get('/events'),
                 api.get('/bookings/my') // Admin gets all bookings
             ]);
+            console.log(bookingsRes)
             setEvents(eventsRes.data);
             setBookings(bookingsRes.data);
         } catch (error) {
