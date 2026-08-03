@@ -44,7 +44,7 @@ const totalPaid = bookings.reduce((sum, booking) => {
                 api.get('/events'),
                 api.get('/bookings/my') // Admin gets all bookings
             ]);
-            console.log(bookingsRes)
+            console.log(bookingsRes.data)
             setEvents(eventsRes.data);
             setBookings(bookingsRes.data);
         } catch (error) {
@@ -223,7 +223,7 @@ const totalPaid = bookings.reduce((sum, booking) => {
                                             </p>
                                             <p className="text-gray-700 flex items-center gap-2 mb-1">
                                                 <span className="font-bold w-16 text-gray-500 uppercase text-xs">Date:</span>
-                                                <span>{new Date(booking.bookedAt).toLocaleString()}</span>
+                                                <span>{new Date(booking.createdAt).toLocaleString()}</span>
                                             </p>
                                             {booking.eventId && (
                                                 <p className="text-gray-700 flex items-center gap-2 mt-2 pt-2 border-t border-gray-200">
