@@ -44,7 +44,6 @@ const totalPaid = bookings.reduce((sum, booking) => {
                 api.get('/events'),
                 api.get('/bookings/my') // Admin gets all bookings
             ]);
-            console.log(bookingsRes.data)
             setEvents(eventsRes.data);
             setBookings(bookingsRes.data);
         } catch (error) {
@@ -78,10 +77,8 @@ const totalPaid = bookings.reduce((sum, booking) => {
     };
 
     const handleConfirmBooking = async (id, paymentStatus) => {
-        console.log(id , paymentStatus)
         try {
             const value=await api.put(`/bookings/${id}/confirm`, { paymentStatus });
-            console.log(value)
             fetchData();
         } catch (error) {
             alert(error.response?.data || 'Error confirming booking');
