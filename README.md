@@ -139,9 +139,6 @@ Implemented JWT authentication, bcrypt password hashing, protected routes, and m
 git clone https://github.com/your-username/Eventora.git
 ```
 
-```bash
-cd Eventora
-```
 
 ### Install Dependencies
 
