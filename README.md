@@ -245,5 +245,3 @@ Screenshot Here
 
 ## 👨‍💻 Author
 
-**Your Name**
-
