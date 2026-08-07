@@ -247,4 +247,3 @@ Screenshot Here
 
 **Your Name**
 
-- GitHub: https://github.com/yourusername
