@@ -172,7 +172,6 @@ EMAIL_USER=your_email
 EMAIL_PASS=your_email_password
 ```
 
-### Run the Applicatio
 
 
 
