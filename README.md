@@ -189,7 +189,7 @@ EMAIL_USER=your_email
 
 ## 🌐 Live Demo
 
-**Live Demo:** https://your-live-link.com
+**Live Demo:** https://eventora-app-f9qc.onrender.com
 
 ---
 
