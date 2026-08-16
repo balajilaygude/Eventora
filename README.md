@@ -1,4 +1,4 @@
-# 🎉 Eventora – Event Booking & Management System
+<img width="1887" height="914" alt="Screenshot 2026-08-16 154111" src="https://github.com/user-attachments/assets/0f347e9d-37ac-446a-a41a-0dcdd6dab6a0" /># 🎉 Eventora – Event Booking & Management System
 
 ## Overview
 
@@ -213,29 +213,24 @@ Whether you're attending a conference, workshop, seminar, cultural event, or com
 
 ### Home Page
 
-```
-Screenshot Here
-```
+<img width="1895" height="908" alt="Screenshot 2026-08-16 154053" src="https://github.com/user-attachments/assets/f7b5dcc2-1158-4a5d-8505-a186eeb071c9" />
+
 
 ### User Dashboard
 
-```
-Screenshot Here
-```
+<img width="1900" height="909" alt="Screenshot 2026-08-16 154252" src="https://github.com/user-attachments/assets/b81e7c8f-8855-4e23-a791-af116e24ef89" />
+
 
 ### Admin Dashboard
 
-```
-Screenshot Here
-```
+<img width="1899" height="911" alt="Screenshot 2026-08-16 154337" src="https://github.com/user-attachments/assets/ee144c8b-edce-429d-acc4-409e8aec4f62" />
+
 
 ### Event Details
 
-```
-Screenshot Here
-```
+<img width="1898" height="909" alt="Screenshot 2026-08-16 154553" src="https://github.com/user-attachments/assets/97946926-750f-49fb-b833-eb1f016b6968" />
 
----
 
 ## 👨‍💻 Author
 
+Balaji Laygude
