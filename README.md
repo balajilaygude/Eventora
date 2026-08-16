@@ -128,45 +128,13 @@ Designed APIs for event booking while enabling administrators to manage booking 
 Implemented JWT authentication, bcrypt password hashing, protected routes, and middleware authorization for secure application access.
 
 
-
 ---
-
-## 🚀 Installation
 
 ### Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/Eventora.git
 ```
-
-
-### Install Dependencies
-
-#### Frontend
-
-```bash
-cd client
-npm install
-```
-
-#### Backend
-
-```bash
-cd server
-npm install
-```
-
-### Configure Environment Variables
-
-Create a `.env` file inside the **server** folder.
-
-```env
-PORT=5000
-
-
-
-```
-
 
 
 
