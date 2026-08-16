@@ -1,4 +1,4 @@
-<img width="1887" height="914" alt="Screenshot 2026-08-16 154111" src="https://github.com/user-attachments/assets/0f347e9d-37ac-446a-a41a-0dcdd6dab6a0" /># 🎉 Eventora – Event Booking & Management System
+# 🎉 Eventora – Event Booking & Management System
 
 ## Overview
 
@@ -215,6 +215,8 @@ Whether you're attending a conference, workshop, seminar, cultural event, or com
 
 <img width="1895" height="908" alt="Screenshot 2026-08-16 154053" src="https://github.com/user-attachments/assets/f7b5dcc2-1158-4a5d-8505-a186eeb071c9" />
 
+<img width="1887" height="914" alt="Screenshot 2026-08-16 154111" src="https://github.com/user-attachments/assets/6e0ece46-19a1-4abd-815f-87758f53ca03" />
+
 
 ### User Dashboard
 
@@ -224,7 +226,7 @@ Whether you're attending a conference, workshop, seminar, cultural event, or com
 ### Admin Dashboard
 
 <img width="1899" height="911" alt="Screenshot 2026-08-16 154337" src="https://github.com/user-attachments/assets/ee144c8b-edce-429d-acc4-409e8aec4f62" />
-
+<img width="1901" height="904" alt="Screenshot 2026-08-16 154357" src="https://github.com/user-attachments/assets/50a808e4-315e-4027-8162-172b1fcf33b4" />
 
 ### Event Details
 
